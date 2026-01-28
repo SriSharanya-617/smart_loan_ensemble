@@ -9,7 +9,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, StackingClassifier
-from sklearn.metrics import accuracy_score
 
 # ------------------------------------------------
 # PAGE CONFIG
@@ -59,7 +58,7 @@ base_models = [
         ('model', LogisticRegression(max_iter=1000))
     ])),
     ('dt', Pipeline([
-        (‘prep’, preprocess),
+        ('prep', preprocess),
         ('model', DecisionTreeClassifier(max_depth=5, random_state=42))
     ])),
     ('rf', Pipeline([
@@ -100,7 +99,7 @@ credit_val = 1 if credit_hist == "Yes" else 0
 emp_val = 1 if employment == "Self-Employed" else 0
 prop_map = {"Urban": 2, "Semi-Urban": 1, "Rural": 0}
 
-input_data = pd.DataFrame([[
+input_data = pd.DataFrame([[  
     app_income,
     co_income,
     loan_amt,
@@ -134,7 +133,6 @@ st.write("""
 # PREDICTION
 # ------------------------------------------------
 if st.button("🔘 Check Loan Eligibility (Stacking Model)"):
-
     # Base model predictions
     lr_pred = stack_model.named_estimators_['lr'].predict(input_data)[0]
     dt_pred = stack_model.named_estimators_['dt'].predict(input_data)[0]
@@ -151,7 +149,6 @@ if st.button("🔘 Check Loan Eligibility (Stacking Model)"):
     # OUTPUT
     # ------------------------------------------------
     st.markdown("### 📌 Prediction Result")
-
     if final_pred == 1:
         st.success("✅ Loan Approved")
     else:
