@@ -94,20 +94,29 @@ credit_hist = st.sidebar.radio("Credit History", ["Yes", "No"])
 employment = st.sidebar.selectbox("Employment Status", ["Salaried", "Self-Employed"])
 property_area = st.sidebar.selectbox("Property Area", ["Urban", "Semi-Urban", "Rural"])
 
-# Encode input
+# Encode input values
 credit_val = 1 if credit_hist == "Yes" else 0
 emp_val = 1 if employment == "Self-Employed" else 0
-prop_map = {"Urban": 2, "Semi-Urban": 1, "Rural": 0}
 
-input_data = pd.DataFrame([[  
-    app_income,
-    co_income,
-    loan_amt,
-    loan_term,
-    credit_val,
-    emp_val,
-    prop_map[property_area]
-]], columns=X.columns)
+# ------------------------------------------------
+# ALIGN INPUT WITH MODEL COLUMNS
+# ------------------------------------------------
+# Start with zeros for all columns
+input_data = pd.DataFrame(0, index=[0], columns=X.columns)
+
+# Fill numeric columns
+for col in ['ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History']:
+    if col in input_data.columns:
+        input_data[col] = locals()[col.lower()]
+
+# Fill employment (Self_Employed) column
+if 'Self_Employed_1' in input_data.columns:
+    input_data['Self_Employed_1'] = emp_val
+
+# Fill property area one-hot column
+property_col = f'Property_Area_{property_area}'
+if property_col in input_data.columns:
+    input_data[property_col] = 1
 
 # ------------------------------------------------
 # MAIN UI
