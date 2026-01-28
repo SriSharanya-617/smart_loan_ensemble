@@ -1,7 +1,7 @@
 /* =================== GLOBAL STYLES =================== */
 body, .stApp {
-    background: linear-gradient(135deg, #fdfdfd, #f0f4f8, #ffffff);
-    color: #000000;
+    background: linear-gradient(135deg, #fdfdfd, #f7f9fc, #ffffff); /* light gradient */
+    color: #000000; /* text in black */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -13,14 +13,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* =================== SIDEBAR =================== */
 .stSidebar {
-    background: linear-gradient(135deg, #f9f9f9, #e6eaf0);
+    background: #f8f9fa; /* very light gray */
     color: #000000;
     padding: 20px;
 }
 
 /* =================== BUTTONS =================== */
 .stButton button {
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* green */
     color: white;
     font-weight: 600;
     border-radius: 8px;
@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* =================== CARDS / CONTAINERS =================== */
 .stCard, .css-1v0mbdj {
-    background-color: #ffffff;
+    background-color: #ffffff; /* white card background */
     color: #000000;
     border-radius: 10px;
     box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
@@ -57,6 +57,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #ffffff;
     color: #000000;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 /* =================== SUCCESS / ERROR MESSAGES =================== */

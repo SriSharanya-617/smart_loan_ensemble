@@ -101,15 +101,22 @@ emp_val = 1 if employment == "Self-Employed" else 0
 # ------------------------------------------------
 # ALIGN INPUT WITH MODEL COLUMNS
 # ------------------------------------------------
-# Start with zeros for all columns
+# Create a zero DataFrame with all training columns
 input_data = pd.DataFrame(0, index=[0], columns=X.columns)
 
-# Fill numeric columns
-for col in ['ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History']:
-    if col in input_data.columns:
-        input_data[col] = locals()[col.lower()]
+# Fill numeric columns directly
+if 'ApplicantIncome' in input_data.columns:
+    input_data['ApplicantIncome'] = app_income
+if 'CoapplicantIncome' in input_data.columns:
+    input_data['CoapplicantIncome'] = co_income
+if 'LoanAmount' in input_data.columns:
+    input_data['LoanAmount'] = loan_amt
+if 'Loan_Amount_Term' in input_data.columns:
+    input_data['Loan_Amount_Term'] = loan_term
+if 'Credit_History' in input_data.columns:
+    input_data['Credit_History'] = credit_val
 
-# Fill employment (Self_Employed) column
+# Fill employment column
 if 'Self_Employed_1' in input_data.columns:
     input_data['Self_Employed_1'] = emp_val
 
